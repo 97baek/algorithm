@@ -1,32 +1,22 @@
-// const solution = (arr1, arr2) => {
-//   return [...arr1, ...arr2].sort((a, b) => a - b);
-// };
-
 const solution = (arr1, arr2) => {
+  const answer = [];
   let p1 = 0;
   let p2 = 0;
-  let count = 0;
-  let answer = [];
 
-  while (answer.length !== arr1.length + arr2.length) {
-    let min = Math.min(arr1[p1], arr2[p2]);
-
-    if (min === arr1[p1]) {
-      answer.push(min);
-      p1++;
-    } else if (min === arr2[p2]) {
-      answer.push(min);
-      p2++;
-    }
-
+  while (p1 < arr1.length && p2 < arr2.length) {
     console.log(p1, p2);
-
-    if (p1 === arr1.length) {
+    if (arr1[p1] > arr2[p2]) {
       answer.push(arr2[p2++]);
-    } else if (p2 === arr2.length) {
+    } else {
       answer.push(arr1[p1++]);
     }
-    count++;
+  }
+
+  while (p1 < arr1.length) {
+    answer.push(arr1[p1++]);
+  }
+  while (p2 < arr2.length) {
+    answer.push(arr2[p2++]);
   }
 
   return answer;
