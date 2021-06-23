@@ -1,24 +1,23 @@
 const solution = (arr) => {
   const stack = [];
   const answer = [];
-  let count = 1;
+  const result = [];
+  let max = 0;
 
   for (let i = 0; i < arr.length; i++) {
-    console.log(i, arr[i], stack);
-
-    while (count <= arr[i]) {
-      stack.push(count);
-      count++;
-      answer.push("+");
-    }
-    if (stack[stack.length - 1] === arr[i]) {
-      stack.pop();
-      answer.push("-");
+    console.log(answer, stack);
+    if (arr[i] < stack[stack.length - 1]) {
+      return "NO";
     } else {
-      return "No";
+      for (let j = max + 1; j <= arr[i]; j++) {
+        stack.push(j);
+        answer.push("+");
+      }
+      max = Math.max(stack.pop(), max);
+      answer.push("-");
     }
-    console.log(i, arr[i], stack);
   }
+
   return answer;
 };
 
