@@ -1,0 +1,16 @@
+const solution = (n) => {
+  let answer = 0;
+  let dp = Array(n).fill(0);
+  dp[0] = 1;
+  dp[1] = 2;
+
+  for (let i = 2; i < n; i++) {
+    dp[i] = dp[i - 1] + dp[i - 2];
+  }
+
+  answer = dp[n - 1];
+  console.log(dp);
+  return answer;
+};
+
+console.log(solution(7));
